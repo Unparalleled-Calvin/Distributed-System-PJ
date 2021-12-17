@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+{% csrf_token %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .autocomplete-search-box {
+            width: 50%;
+            margin-left: 25%;
+            box-shadow: 0 2px 10px 0px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .autocomplete-search-box .search-box {
+            width: 100%;
+            height: 40px;
+            padding: 30px 20px;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 20px;
+        }
+
+        .autocomplete-search-box .search-result {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .autocomplete-search-box .search-result li {
+            width: 100%;
+            list-style-type: none;
+            padding: 10px 20px;
+            background-color: #ffffff;
+        }
+
+        .autocomplete-search-box .search-result li:hover {
+            background: #f5cd79;
+        }
+
+        .fill,body,html{height:100%}#json_vl,.td_head,.td_row_even,.td_row_odd{font-size:small}#json_pnl,#xxa,.navbar-header,.navbar-nav,.navbar-nav>li,.td_head{float:left}.fill{min-height:100%}#json_vl{font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace}#widget{width:100%}.top_size{height:51px}#all_panels{height:100%;min-height:100%}#aboutLnk{position:fixed;right:10px;top:15px}#inner_text{display:block;position:absolute;height:auto;bottom:0;top:0;left:0;right:0;margin-top:51px;margin-bottom:0}#json_pnl{background-color:#ccc;width:33.3%}#xxa{background-color:#E8E8E8;width:66.7%}#table_pnl,#tree_pnl{background-color:#E8E8E8;float:left;width:50%}#sharethis{position:fixed;right:80px;top:10px}#inner_tbl{padding-left:2px}.td_row_even{padding:2px}.td_row_odd{padding:2px;}.td_head{padding:2px;font-weight:700}input,p,select,td,textarea,th{font-size:1em}table,td,th{border:1px solid gray}textarea{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;display:block;width:100%;height:100%;margin:0;padding:4px;border:1px solid #333;overflow-y:auto;overflow-x:hidden}*,html{font-family:Verdana,Arial,Helvetica,sans-serif}form,h1,h2,h3,h4,h5,li,p,ul{margin:0;padding:0}img{border:none}p{margin:0 0 1em}table{margin:auto;font-size:100%}ol.tree{padding:0 0 0 30px;width:300px}li{position:relative;margin-left:-15px;list-style:none}li.file{margin-left:-1px!important}li.file a{background:url(leaf.png)0 5px no-repeat;color:#000;padding-left:12px;text-decoration:none;display:block;font-size:small}li.file a[href$='.css'],li.file a[href$='.js'],li.file a[href*='.pdf'],li.file a[href*='.html']{background:url(http://www.thecssninja.com/demo/css_tree/document.png)no-repeat}li input{position:absolute;left:0;margin-left:0;opacity:0;z-index:2;cursor:pointer;height:1em;width:1em;top:0}li input+ol{background:url(http://www.thecssninja.com/demo/css_tree/toggle-small-expand.png)40px -3px no-repeat;margin:-20px 0 0 -44px;height:1em;padding:1.563em 0 0 80px}li label.lbl_array,li label.lbl_obj{display:block;padding-left:33px;margin-bottom:2px}li input+ol>li{display:none;margin-left:-14px!important;padding-left:1px}li label.lbl_obj{background:url(folder.png)15px 1px no-repeat;cursor:pointer}li label.lbl_array{background:url(array.png)15px 1px no-repeat;cursor:pointer}li input:checked+ol{background:url(http://www.thecssninja.com/demo/css_tree/toggle-small.png)40px -3px no-repeat;margin:-20px 0 0 -44px;padding:1.563em 0 0 80px;height:auto}li input:checked+ol>li{display:block;margin:0 0 .125em}li input:checked+ol>li:last-child{margin:0 0 .063em}.container{width:970px;max-width:none!important}.col-xs-4{padding-top:15px;padding-bottom:15px;background-color:#eee;background-color:rgba(86,61,124,.15);border:1px solid #ddd;border:1px solid rgba(86,61,124,.2)}.container .navbar-collapse,.container .navbar-header{margin-right:0;margin-left:0}.navbar-collapse{display:block!important;height:auto!important;padding-bottom:0;overflow:visible!important;border-top:0}.navbar-toggle{display:none}.navbar-brand{margin-left:-15px}.navbar-btn{margin-left:15px}.navbar-nav{margin:0}.navbar-nav>li>a{padding:15px}.navbar-nav.navbar-right{float:right}.navbar .navbar-nav .open .dropdown-menu{position:absolute;float:left;background-color:#fff;border:1px solid #ccc;border:1px solid rgba(0,0,0,.15);border-width:0 1px 1px;border-radius:0 0 4px 4px;-webkit-box-shadow:0 6px 12px rgba(0,0,0,.175);box-shadow:0 6px 12px rgba(0,0,0,.175)}.navbar-default .navbar-nav .open .dropdown-menu>li>a{color:#333}.navbar .navbar-nav .open .dropdown-menu>.active>a,.navbar .navbar-nav .open .dropdown-menu>.active>a:focus,.navbar .navbar-nav .open .dropdown-menu>.active>a:hover,.navbar .navbar-nav .open .dropdown-menu>li>a:focus,.navbar .navbar-nav .open .dropdown-menu>li>a:hover{color:#fff!important;background-color:#428bca!important}.navbar .navbar-nav .open .dropdown-menu>.disabled>a,.navbar .navbar-nav .open .dropdown-menu>.disabled>a:focus,.navbar .navbar-nav .open .dropdown-menu>.disabled>a:hover{color:#999!important;background-color:transparent!important}
+    </style>
+</head>
+
+<body style="background-color: #f7d794;">
+    <h1 align="center" style="color:#303952; padding:40px;">Cute Inverted Index</h2>
+    <div class="autocomplete-search-box">
+        <input id="word" type="text" class="search-box" placeholder="请键入搜索内容..." onkeyup="complete()" />
+        <ul class="search-result"></ul>
+    </div>
+    <div id="info" style="text-align: center; padding:30px;"></div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<script src="http://json2table.com/viewer.js"></script>
+<script>
+    function drawProducerList(producers) {
+        if(producers.length == 0)
+            $("#info")[0].innerHTML = "找不到记录呢...QAQ";
+        $('.autocomplete-search-box .search-result').html('')
+        for (let i = 0; i < producers.length; i++) {
+            $('.autocomplete-search-box .search-result').append("<li>" + String(producers[i]) + '</li>')
+        }
+        $("li").click(function (){
+            var target = $(this)[0].innerText;
+            $("#word")[0].value = target;
+            search(target);
+            $(".search-result")[0].innerHTML = "";
+        });
+    }
+
+    function complete() {
+        var csrfToken = $("[name='csrfmiddlewaretoken']").val();
+        $("#info")[0].innerHTML = "";
+        $.ajax({
+			type: "POST",
+			url: "complete",
+			dataType: "json",
+			data: {
+				pattern: $("#word")[0].value,
+				csrfmiddlewaretoken: csrfToken,
+			},
+			success: function (data) {
+				drawProducerList(data.words)
+			}
+		});
+    }
+
+    function show_info(word, word_info) {
+        $("#info")[0].appendChild(buildTable(word_info));
+    }
+
+    function search(word){
+        var csrfToken = $("[name='csrfmiddlewaretoken']").val();
+        $.ajax({
+			type: "POST",
+			url: "search",
+			dataType: "json",
+			data: {
+				word: word,
+				csrfmiddlewaretoken: csrfToken,
+			},
+			success: function (data) {
+				show_info(word, data.word_info);
+			}
+		});
+    }
+</script>
+
+</html>
