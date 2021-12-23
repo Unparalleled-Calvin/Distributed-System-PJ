@@ -19,6 +19,7 @@ public class Cute {
         Job job = new Job();
         job.setJarByClass(Cute.class);
         job.setJobName("Cute app");
+        job.setNumReduceTasks(10);
 
         //设置读取文件的路径，都是从HDFS中读取。读取文件路径从脚本文件中传进来
         FileInputFormat.addInputPath(job,new Path(args[0]));

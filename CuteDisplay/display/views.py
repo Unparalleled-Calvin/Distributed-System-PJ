@@ -40,7 +40,7 @@ def search(request):
     temp_info = {}
     for key, value in word_info[word].items():
         if key != "idf":
-            temp_info[key+".txt"] = value
+            temp_info[key] = value
     ret_info["idf"] = word_info[word]["idf"]
     ret_info["indices"] = [temp_info]
     return JsonResponse({"word_info" : ret_info})
